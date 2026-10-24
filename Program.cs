@@ -27,7 +27,7 @@ namespace Lab05
 			{
 				sum += 1.0 / i;   // 1.0, щоб ділення не було цілим
 
-				if (i % 5 == 0) { Console.WriteLine($"Крок {i}: проміжна сума = {sum:F4}"); }
+				if (i % 5 == 0) { Console.WriteLine($"Крок {i}: проміжна сума = {sum:F4}"); }   
 				if (sum > 3 && exceedTerm == 0) { exceedTerm = i; }
 			}
 
@@ -60,6 +60,28 @@ namespace Lab05
 			if (n >= 1)
 			{
 				Console.WriteLine($"Сума ряду (while): {sum:F4}");
+			}
+
+			// ===== РІВЕНЬ Б. Квадрат зі стороною size =====
+			int size;
+			bool correct;
+			do
+			{
+				Console.Write("Введіть сторону квадрата (від 3 до 20): ");
+				correct = int.TryParse(Console.ReadLine(), out size) && size >= 3 && size <= 20;
+				if (!correct) { Console.WriteLine("Помилка: потрібне ціле число від 3 до 20."); }
+			}
+			while (!correct);
+
+			for (int i = 0; i < size; i++)         // зовнішній цикл: рядки
+			{
+				for (int j = 0; j < size; j++)     // внутрішній цикл: стовпці
+				{
+					if (i == j || i + j == size - 1) { Console.Write("#"); }    // діагоналі
+					else if (i == 0 || i == size - 1 || j == 0 || j == size - 1) { Console.Write("*"); }   // межа
+					else { Console.Write(" "); }   // решта
+				}
+				Console.WriteLine();               // перехід на новий рядок
 			}
 		}
 	}
